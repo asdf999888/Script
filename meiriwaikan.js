@@ -1,36 +1,13 @@
-{
-  "rules" : [
-    {
-      "action" : "body",
-      "matchField" : "",
-      "field" : "",
-      "value" : "user_purchase_status\":1",
-      "matchValue" : "user_purchase_status\":\\d",
-      "destiontion" : "response",
-      "isRegex" : true
-    },
-    {
-      "action" : "body",
-      "matchField" : "",
-      "field" : "",
-      "value" : "finished\":true",
-      "matchValue" : "finished\":\\w+",
-      "destiontion" : "response",
-      "isRegex" : true
-    }
-  ],
-  "enabled" : false,
-  "name" : "每日外刊",
-  "description" : "",
-  "locations" : [
-    {
-      "method" : "GET",
-      "scheme" : "https",
-      "enabled" : true,
-      "port" : 443,
-      "query" : "",
-      "host" : "dict.eudic.net",
-      "path" : "\/jingting\/*"
-    }
-  ]
-}
+/*Quantumult X 脚本:
+每日外壳内解锁内容
+[rewrite_local]
+# Xunjie Unlock annual subscriptions （by LTribe）
+^https?:\/\/.dict\.eudic\.bet\/jingting\/v\d\/* url script-response-body xunjie.js
+[mitm]
+hostname = dict.eudic.net,
+*/
+
+let obj = JSON.parse($response.body);
+obj.data.user_purchase_status = 1;
+obj.data.finished = true;
+$done({body: JSON.stringify(obj)});
