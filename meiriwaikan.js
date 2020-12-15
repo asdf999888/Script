@@ -7,6 +7,7 @@
 hostname = dict.eudic.net,
 */
 
-let obj = JSON.parse($response.body);
-obj.user_purchase_status = 1;
-$done({body: JSON.stringify(obj)});
+let obj = html.parse($response.body);
+obj.data.user_purchase_status = 1;
+obj.data.finished = true;
+$done({body: html.stringify(obj)});
