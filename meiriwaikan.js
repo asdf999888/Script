@@ -7,7 +7,7 @@
 hostname = dict.eudic.net,
 */
 
-let obj = text/html.parse($response.body);
+let obj = html.parse($response.body);
 obj.data.user_purchase_status = 1;
 obj.data.finished = true;
-$done({body: text/html.stringify(obj)});
+$done({body: html.stringify(obj)});
